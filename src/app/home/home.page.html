@@ -1,10 +1,11 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>G00439364</ion-title>
-    <ion-icon name="settings-outline" slot="end"></ion-icon>
+    <ion-icon name="settings-outline" slot="end" (click)="openSettings()"></ion-icon>
   </ion-toolbar>
 </ion-header>
+
 <ion-content [fullscreen]="true">
-  <ion-input label="Enter country" placeholder="Country name"></ion-input>
-  <ion-button expand="full">Search</ion-button>
+  <ion-input [(ngModel)]="countryName" label="Enter country" placeholder="Country name"></ion-input>
+  <ion-button expand="full" (click)="searchCountry()">Search</ion-button>
 </ion-content>
