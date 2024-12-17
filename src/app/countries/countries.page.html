@@ -4,10 +4,13 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Countries</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="false">
+  <ion-card *ngFor="let country of countriesData">
+    <img src={{country.flag}} alt={{country.alt}} />
+    <ion-card-header>
+      <ion-card-title>{{country.name}}</ion-card-title>
+    </ion-card-header>
+    <ion-button expand="full" fill="outline">News</ion-button>
+    <ion-button expand="full" fill="outline">Weather</ion-button>
+  </ion-card>
 </ion-content>

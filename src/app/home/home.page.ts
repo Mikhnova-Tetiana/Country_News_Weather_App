@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MyHttpService } from '../services/my-http.service';
 import { HttpOptions } from '@capacitor/core';
+import { MyDataService } from '../services/my-data.service';
 
 @Component({
   selector: 'app-home',
@@ -19,19 +20,21 @@ export class HomePage {
   options: HttpOptions = {
     url: "",
   }
+  countries: any = [];
 
   constructor(
     private router: Router,
-    private mhs: MyHttpService
+    private mhs: MyHttpService,
+    private mds: MyDataService
     ) {
     addIcons({ settingsOutline });
   }
 
-  async searchCountry(){
+  async searchCountries(){
     this.options.url = "https://restcountries.com/v3.1/name/".concat(this.countryName);
-    console.log(this.options.url);
     let result = await this.mhs.get(this.options);
-    console.log(result.data);
+    this.countries = result.data;
+    await this.mds.set("countries", this.countries);
     this.router.navigate(['/countries']);
   }
   openSettings(){
