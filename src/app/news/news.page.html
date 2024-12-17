@@ -5,19 +5,24 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <h4>News for {{countryName}}</h4>
-  <ion-list>
-    <ion-card *ngFor="let story of news">
-      <div *ngIf="story">
-      <img *ngIf="story.image_url" src={{story.image_url}} (error)="onImageError($event)" width="500" />
-      <ion-card-header>
-        <ion-card-title>{{story.title}}</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        {{story.description}}
-      </ion-card-content>
-      </div>
-    </ion-card>
-  </ion-list>
+  <div *ngIf="news && news.length > 0">
+    <h4>News for {{countryName}}</h4>
+    <ion-list>
+      <ion-card *ngFor="let story of news">
+        <div *ngIf="story">
+        <img *ngIf="story.image_url" src={{story.image_url}} (error)="onImageError($event)" width="500" />
+        <ion-card-header>
+          <ion-card-title>{{story.title}}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          {{story.description}}
+        </ion-card-content>
+        </div>
+      </ion-card>
+    </ion-list>
+  </div>
+  <h3 *ngIf="!news || news.length === 0">
+    No News found for {{countryName}}
+  </h3>
 </ion-content>
 

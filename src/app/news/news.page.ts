@@ -23,8 +23,12 @@ export class NewsPage implements OnInit {
   }
 
   async getStorageData(){
-    this.news = await this.mds.get("news");
-    console.log(this.news);
+    let result = await this.mds.get("news");
+    if (result.message == "The country you provided does not exist in our database.") {
+      this.news = null;
+    } else {
+      this.news = result;
+    }
     this.countryName = await this.mds.get("countryName");
   }
 
