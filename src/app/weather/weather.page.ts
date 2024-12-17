@@ -15,7 +15,7 @@ export class WeatherPage implements OnInit {
   weatherData: any = {};
   icon: string = "";
 
-  constructor(private mds: MyDataService) { }
+  constructor(private mds: MyDataService,) { }
 
   ngOnInit() {
     this.getWeatherData();
@@ -23,10 +23,7 @@ export class WeatherPage implements OnInit {
 
   async getWeatherData(){
     this.weatherData = await this.mds.get("countryWeather");
+    this.icon = `https://openweathermap.org/img/wn/${this.weatherData.icon}@2x.png`;
   }
-  getIconUrl() {
-    let iconUrl = `https://openweathermap.org/img/wn/${this.weatherData.icon}@2x.png`;
-  }
-
-
+ 
 }
