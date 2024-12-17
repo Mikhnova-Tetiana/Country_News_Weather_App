@@ -16,7 +16,7 @@ import { MyHttpService } from '../services/my-http.service';
 })
 export class CountriesPage implements OnInit {
   countriesData: any = [];
-  countryWeather: any = [];
+  countryWeather: any = {};
 
   newsdataApiKey: string = "pub_625934da6ac0ad04910dfcab8ad3c1448af40";
   openweatherApiKey: string = "b23c9ea4191abd5fb8e5bcff8c91bebc";
@@ -67,13 +67,13 @@ export class CountriesPage implements OnInit {
     this.options.url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=${units}&appid=${this.openweatherApiKey}`
     let result = await this.mhs.get(this.options);
     let resultData = result.data;
-    this.countryWeather.push({
+    this.countryWeather = {
       capital: capital.toString(),
       description: resultData.weather[0].description,
       icon: resultData.weather[0].icon,
       temperature: resultData.main.temp,
       units: units,
-    })
+    }
 
     await this.mds.set("countryWeather", this.countryWeather);
     console.log(this.countryWeather);
