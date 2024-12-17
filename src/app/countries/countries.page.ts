@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonCard, IonCardHeader, IonCardTitle, IonButton } from '@ionic/angular/standalone';
 import { MyDataService } from '../services/my-data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-countries',
@@ -14,7 +15,10 @@ import { MyDataService } from '../services/my-data.service';
 export class CountriesPage implements OnInit {
   countriesData: any = [];
 
-  constructor(private mds: MyDataService) { }
+  constructor(
+    private mds: MyDataService,
+    private router: Router,
+  ) { }
 
   ngOnInit() {
     this.getCountries();
@@ -30,4 +34,9 @@ export class CountriesPage implements OnInit {
       });
     }
   }
+  
+  openNews(){
+    this.router.navigate(['/news']);
+  }
+
 }
