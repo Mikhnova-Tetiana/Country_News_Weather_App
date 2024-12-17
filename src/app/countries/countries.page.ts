@@ -16,7 +16,10 @@ import { MyHttpService } from '../services/my-http.service';
 })
 export class CountriesPage implements OnInit {
   countriesData: any = [];
-  apiKey: string = "pub_625934da6ac0ad04910dfcab8ad3c1448af40";
+  countryWeather: any = [];
+
+  newsdataApiKey: string = "pub_625934da6ac0ad04910dfcab8ad3c1448af40";
+  openweatherApiKey: string = "b23c9ea4191abd5fb8e5bcff8c91bebc";
   options: HttpOptions = {
     url: ""
   }
@@ -39,16 +42,42 @@ export class CountriesPage implements OnInit {
         alt: country.flags.alt,
         name: country.name.official,
         code: country.cca2, 
+        capital: country.capital,
+        latitude: country.latlng[0],
+        longitude: country.latlng[1],
       });
     }
   }
   
   async openNews(code: string, name: string){
-    this.options.url = `https://newsdata.io/api/1/latest?apikey=${this.apiKey}&country=${code}`;
+    this.options.url = `https://newsdata.io/api/1/latest?apikey=${this.newsdataApiKey}&country=${code}`;
     let result = await this.mhs.get(this.options);
     await this.mds.set("news", result.data.results);
     await this.mds.set("countryName", name);
     this.router.navigate(['/news']);
+  }
+
+  async openWeather(capital: string, latitude: number, longitude: number){
+    let units: string = "metric";
+    let savedUnits = await this.mds.get("unit");
+    if(savedUnits) {
+      units = savedUnits;
+    }
+
+    this.options.url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=${units}&appid=${this.openweatherApiKey}`
+    let result = await this.mhs.get(this.options);
+    let resultData = result.data;
+    this.countryWeather.push({
+      capital: capital.toString(),
+      description: resultData.weather[0].description,
+      icon: resultData.weather[0].icon,
+      temperature: resultData.main.temp,
+      units: units,
+    })
+
+    await this.mds.set("countryWeather", this.countryWeather);
+    console.log(this.countryWeather);
+    this.router.navigate(['/weather']);
   }
 
 }

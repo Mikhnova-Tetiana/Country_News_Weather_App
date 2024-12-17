@@ -13,6 +13,8 @@
     <ion-button expand="full" fill="outline" (click)="openNews(country.code, country.name)">
       News
     </ion-button>
-    <ion-button expand="full" fill="outline">Weather</ion-button>
+    <ion-button expand="full" fill="outline" (click)="openWeather(country.capital, country.latitude, country.longitude)">
+      Weather
+    </ion-button>
   </ion-card>
 </ion-content>
