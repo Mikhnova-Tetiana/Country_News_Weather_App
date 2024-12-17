@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonCard, IonCardHeader, IonCardSubtitle, IonCardContent, IonCardTitle, IonList } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonCard, IonCardHeader, IonCardContent, IonCardTitle, IonList, IonImg } from '@ionic/angular/standalone';
 import { MyDataService } from '../services/my-data.service';
 
 @Component({
@@ -14,6 +14,7 @@ import { MyDataService } from '../services/my-data.service';
 export class NewsPage implements OnInit {
   news: any = [];
   countryName: string = "";
+  placeholderImage = 'assets/images/placeholder.png'; 
 
   constructor(private mds: MyDataService) { }
 
@@ -23,7 +24,12 @@ export class NewsPage implements OnInit {
 
   async getStorageData(){
     this.news = await this.mds.get("news");
+    console.log(this.news);
     this.countryName = await this.mds.get("countryName");
+  }
+
+  onImageError(event: any) {
+    event.target.src = this.placeholderImage;
   }
 
 }

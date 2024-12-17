@@ -9,7 +9,7 @@
   <ion-list>
     <ion-card *ngFor="let story of news">
       <div *ngIf="story">
-      <img *ngIf="story.image_url" src={{story.image_url}} />
+      <img *ngIf="story.image_url" src={{story.image_url}} (error)="onImageError($event)" width="500" />
       <ion-card-header>
         <ion-card-title>{{story.title}}</ion-card-title>
       </ion-card-header>
@@ -20,3 +20,4 @@
     </ion-card>
   </ion-list>
 </ion-content>
+
