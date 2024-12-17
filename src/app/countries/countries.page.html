@@ -4,17 +4,17 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="false">
+<ion-content [fullscreen]="true">
   <ion-card *ngFor="let country of countriesData">
     <img src={{country.flag}} alt={{country.alt}} />
-    <ion-card-header>
+    <div class="ion-padding">
       <ion-card-title>{{country.name}}</ion-card-title>
-    </ion-card-header>
-    <ion-button expand="full" fill="outline" (click)="openNews(country.code, country.name)">
-      News
-    </ion-button>
-    <ion-button expand="full" fill="outline" (click)="openWeather(country.capital, country.latitude, country.longitude)">
-      Weather
-    </ion-button>
+      <ion-button fill="outline" expand="block" (click)="openNews(country.code, country.name)">
+        News
+      </ion-button>
+      <ion-button fill="outline" expand="block" (click)="openWeather(country.capital, country.latitude, country.longitude)">
+        Weather
+      </ion-button>
+    </div>
   </ion-card>
 </ion-content>
