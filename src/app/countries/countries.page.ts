@@ -43,11 +43,12 @@ export class CountriesPage implements OnInit {
     }
   }
   
-  async openNews(code: string){
-    this.router.navigate(['/news']);
+  async openNews(code: string, name: string){
     this.options.url = `https://newsdata.io/api/1/latest?apikey=${this.apiKey}&country=${code}`;
     let result = await this.mhs.get(this.options);
     await this.mds.set("news", result.data.results);
+    await this.mds.set("countryName", name);
+    this.router.navigate(['/news']);
   }
 
 }
