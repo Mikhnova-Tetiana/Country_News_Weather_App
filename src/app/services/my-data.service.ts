@@ -19,6 +19,6 @@ export class MyDataService {
   }
 
   async get(key: string){
-    await this.storage.get(key);
+    return await this.storage.get(key);
   }
 }
