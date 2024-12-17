@@ -4,6 +4,8 @@ import { addIcons } from 'ionicons';
 import { settingsOutline } from 'ionicons/icons';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MyHttpService } from '../services/my-http.service';
+import { HttpOptions } from '@capacitor/core';
 
 @Component({
   selector: 'app-home',
@@ -14,13 +16,23 @@ import { Router } from '@angular/router';
 })
 export class HomePage {
   countryName: string = "";
+  options: HttpOptions = {
+    url: "",
+  }
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private mhs: MyHttpService
+    ) {
     addIcons({ settingsOutline });
   }
 
-  searchCountry(){
-
+  async searchCountry(){
+    this.options.url = "https://restcountries.com/v3.1/name/".concat(this.countryName);
+    console.log(this.options.url);
+    let result = await this.mhs.get(this.options);
+    console.log(result.data);
+    this.router.navigate(['/countries']);
   }
   openSettings(){
     this.router.navigate(['/settings']);
