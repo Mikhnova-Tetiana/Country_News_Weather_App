@@ -7,14 +7,16 @@
 <ion-content [fullscreen]="true">
   <h4>News for {{countryName}}</h4>
   <ion-list>
-  <ion-card *ngFor="let story of news">
-    <img src={{story.image_url}} />
-    <ion-card-header>
-      <ion-card-title>{{story.title}}</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      {{story.description}}
-    </ion-card-content>
-  </ion-card>
+    <ion-card *ngFor="let story of news">
+      <div *ngIf="story">
+      <img *ngIf="story.image_url" src={{story.image_url}} />
+      <ion-card-header>
+        <ion-card-title>{{story.title}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        {{story.description}}
+      </ion-card-content>
+      </div>
+    </ion-card>
   </ion-list>
 </ion-content>
