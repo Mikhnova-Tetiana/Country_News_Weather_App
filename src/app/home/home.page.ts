@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonIcon, IonInput, IonButton } from '@ionic/angular/standalone';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonIcon, IonInput, IonButton, IonToggle } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { settingsOutline } from 'ionicons/icons';
 import { FormsModule } from '@angular/forms';
@@ -40,4 +40,5 @@ export class HomePage {
   openSettings(){
     this.router.navigate(['/settings']);
   }
+
 }

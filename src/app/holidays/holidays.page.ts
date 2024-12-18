@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonItem, IonLabel, IonList, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonCard, IonImg } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonItem, IonLabel, IonList, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonCard, IonImg, IonBackButton, IonButtons } from '@ionic/angular/standalone';
 import { MyDataService } from '../services/my-data.service';
 import { MyHttpService } from '../services/my-http.service';
 import { HttpOptions } from '@capacitor/core';
@@ -11,7 +11,7 @@ import { HttpOptions } from '@capacitor/core';
   templateUrl: './holidays.page.html',
   styleUrls: ['./holidays.page.scss'],
   standalone: true,
-  imports: [IonImg, IonCard, IonCardSubtitle, IonCardTitle, IonCardHeader, IonList, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [IonButtons, IonBackButton, IonCard, IonCardSubtitle, IonCardTitle, IonCardHeader, IonList, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
 })
 export class HolidaysPage implements OnInit {
   unsplashKey: string = "67GCWxTTqBerSIWt4ZXxyaIf9zP45qP4bpdrIQRp-8E";
@@ -43,6 +43,9 @@ export class HolidaysPage implements OnInit {
       } else {
         holiday.image = "assets/default-image.png";
       }
+      this.options.url = `https://en.wikipedia.org/w/api.php?action=opensearch&search=${holiday.name}&limit=1&format=json&origin=*`;
+      result = await this.mhs.get(this.options);
+      console.log(result.data);
     }
   }
 

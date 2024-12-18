@@ -43,3 +43,19 @@ ion-back-button {
   --padding-start: 8px; 
   font-weight: bold; 
 }
+
+body.dark {
+  --ion-background-color: #121212;
+  --border-color: #c1c4cd;
+  --ion-text-color: #fff;
+
+  .radio-checked, .radio-icon {
+    border-color: fff;
+    --color: rgba(236, 230, 230, 0.845);
+    --color-checked:  #0054e9;
+  }
+  ion-card-title, ion-card-content, ion-card-subtitile {
+    --color: #c1c4cd;
+  }
+}
+

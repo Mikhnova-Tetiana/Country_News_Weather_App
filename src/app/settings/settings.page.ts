@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonRadioGroup, IonRadio, IonItem, IonLabel, IonToggle, IonBackButton, IonNav, IonButtons, IonButton, IonIcon } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonRadioGroup, IonRadio, IonBackButton, IonButtons, IonToggle } from '@ionic/angular/standalone';
 import { MyDataService } from '../services/my-data.service';
 
 @Component({
@@ -9,10 +9,11 @@ import { MyDataService } from '../services/my-data.service';
   templateUrl: './settings.page.html',
   styleUrls: ['./settings.page.scss'],
   standalone: true,
-  imports: [IonButtons, IonBackButton, IonRadio, IonRadioGroup, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [IonToggle, IonButtons, IonBackButton, IonRadio, IonRadioGroup, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
 })
 export class SettingsPage implements OnInit {
   unit: string = 'metric';
+  darkModeEnabled: boolean = false;
 
   constructor(
     private mds: MyDataService,
@@ -20,6 +21,7 @@ export class SettingsPage implements OnInit {
 
   ngOnInit() {
     this.setNewUnit();
+    this.initializeTheme();
   }
 
   async saveUnit(){
@@ -31,6 +33,24 @@ export class SettingsPage implements OnInit {
     if(savedUnit) {
       this.unit = savedUnit;
     }
+  }
+
+  async initializeTheme() {
+    const savedTheme = await this.mds.get('theme');
+    this.darkModeEnabled = savedTheme === 'dark';
+    this.setTheme(this.darkModeEnabled);
+  }
+
+  // Toggle the dark theme and save preference
+  async toggleTheme(event: any) {
+    this.darkModeEnabled = event.detail.checked;
+    await this.setTheme(this.darkModeEnabled);
+  }
+
+  // Set the theme and persist it to Ionic Storage
+  async setTheme(darkMode: boolean) {
+    document.body.classList.toggle('dark', darkMode);
+    await this.mds.set('theme', darkMode ? 'dark' : 'light');
   }
 
 }
