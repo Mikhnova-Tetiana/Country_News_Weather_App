@@ -17,6 +17,7 @@ import { MyHttpService } from '../services/my-http.service';
 export class CountriesPage implements OnInit {
   countriesData: any = [];
   countryWeather: any = {};
+  countryHolidays: any = [];
 
   newsdataApiKey: string = "pub_625934da6ac0ad04910dfcab8ad3c1448af40";
   openweatherApiKey: string = "b23c9ea4191abd5fb8e5bcff8c91bebc";
@@ -83,8 +84,9 @@ export class CountriesPage implements OnInit {
   async openHolidays(code: string){
     this.options.url = `https://date.nager.at/api/v3/publicholidays/2025/${code}`;
     let result = await this.mhs.get(this.options);
-    console.log(result);
+    this.countryHolidays = result.data;
+    await this.mds.set("countryHolidays", this.countryHolidays);
+    console.log(this.countryHolidays);
     this.router.navigate(['/holidays']);
   }
-
 }
