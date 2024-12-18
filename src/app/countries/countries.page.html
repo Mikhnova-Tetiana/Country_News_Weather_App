@@ -15,9 +15,12 @@
       <ion-button fill="outline" expand="block" (click)="openWeather(country.capital, country.latitude, country.longitude)">
         Weather
       </ion-button>
-      <ion-buttons>
-        <ion-back-button default-href="/"></ion-back-button>
-      </ion-buttons>
+      <ion-button fill="outline" expand="block" (click)="openHolidays(country.code)">
+        Holidays
+      </ion-button>
     </div>
   </ion-card>
 </ion-content>
+<ion-buttons>
+  <ion-back-button default-href="/"></ion-back-button>
+</ion-buttons>

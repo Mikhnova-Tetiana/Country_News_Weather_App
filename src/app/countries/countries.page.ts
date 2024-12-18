@@ -80,4 +80,11 @@ export class CountriesPage implements OnInit {
     this.router.navigate(['/weather']);
   }
 
+  async openHolidays(code: string){
+    this.options.url = `https://date.nager.at/api/v3/publicholidays/2025/${code}`;
+    let result = await this.mhs.get(this.options);
+    console.log(result);
+    this.router.navigate(['/holidays']);
+  }
+
 }
