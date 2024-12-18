@@ -77,16 +77,15 @@ export class CountriesPage implements OnInit {
     }
 
     await this.mds.set("countryWeather", this.countryWeather);
-    console.log(this.countryWeather);
     this.router.navigate(['/weather']);
   }
 
-  async openHolidays(code: string){
+  async openHolidays(code: string, name: string) {
+    await this.mds.set("countryName", name);
     this.options.url = `https://date.nager.at/api/v3/publicholidays/2025/${code}`;
     let result = await this.mhs.get(this.options);
     this.countryHolidays = result.data;
     await this.mds.set("countryHolidays", this.countryHolidays);
-    console.log(this.countryHolidays);
     this.router.navigate(['/holidays']);
   }
 }

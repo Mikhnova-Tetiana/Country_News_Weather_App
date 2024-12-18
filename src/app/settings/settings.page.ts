@@ -41,13 +41,11 @@ export class SettingsPage implements OnInit {
     this.setTheme(this.darkModeEnabled);
   }
 
-  // Toggle the dark theme and save preference
   async toggleTheme(event: any) {
     this.darkModeEnabled = event.detail.checked;
     await this.setTheme(this.darkModeEnabled);
   }
 
-  // Set the theme and persist it to Ionic Storage
   async setTheme(darkMode: boolean) {
     document.body.classList.toggle('dark', darkMode);
     await this.mds.set('theme', darkMode ? 'dark' : 'light');

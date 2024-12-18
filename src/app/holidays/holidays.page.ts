@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonItem, IonLabel, IonList, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonCard, IonImg, IonBackButton, IonButtons } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonList, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCard, IonImg, IonBackButton, IonButtons } from '@ionic/angular/standalone';
 import { MyDataService } from '../services/my-data.service';
 import { MyHttpService } from '../services/my-http.service';
 import { HttpOptions } from '@capacitor/core';
@@ -43,9 +43,6 @@ export class HolidaysPage implements OnInit {
       } else {
         holiday.image = "assets/default-image.png";
       }
-      this.options.url = `https://en.wikipedia.org/w/api.php?action=opensearch&search=${holiday.name}&limit=1&format=json&origin=*`;
-      result = await this.mhs.get(this.options);
-      console.log(result.data);
     }
   }
 

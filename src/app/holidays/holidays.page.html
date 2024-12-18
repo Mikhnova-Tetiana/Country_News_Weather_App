@@ -1,11 +1,11 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Holidays</ion-title>
+    <ion-title>Holidays of {{countryName}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-list>
+  <ion-list *ngIf="holidays && holidays.length > 0">
     <ion-card *ngFor="let holiday of holidays">
       <ion-card-header>
         <img width="500" src={{holiday.image}}>
@@ -15,6 +15,9 @@
       </ion-card-header>
     </ion-card>
   </ion-list>
+  <h3 *ngIf="!holidays || holidays.length === 0">
+    No holidays found for {{countryName}} using https://date.nager.at/Api.
+  </h3>
 </ion-content>
 <ion-buttons>
   <ion-back-button default-href="/"></ion-back-button>
