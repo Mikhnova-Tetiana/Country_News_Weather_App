@@ -8,6 +8,7 @@
   <ion-list>
     <ion-card *ngFor="let holiday of holidays">
       <ion-card-header>
+        <img width="500" src={{holiday.image}}>
         <ion-card-title>Local Name: {{holiday.localName}}</ion-card-title>
         <ion-card-subtitle>Name: {{holiday.name}}</ion-card-subtitle>
         <ion-card-subtitle>Date: {{holiday.date}}</ion-card-subtitle>
