@@ -35,3 +35,11 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 // @import '@ionic/angular/css/palettes/dark.system.css';
+
+ion-back-button {
+  --color: #007bff; 
+  --icon-font-size: 24px; 
+  --margin-start: 16px; 
+  --padding-start: 8px; 
+  font-weight: bold; 
+}

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonCard, IonCardHeader, IonCardContent, IonCardTitle, IonList, IonImg, IonItem, IonAvatar, IonLabel, IonButtons, IonButton } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonCard, IonCardHeader, IonCardContent, IonCardTitle, IonList, IonButtons, IonBackButton } from '@ionic/angular/standalone';
 import { MyDataService } from '../services/my-data.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { MyDataService } from '../services/my-data.service';
   templateUrl: './news.page.html',
   styleUrls: ['./news.page.scss'],
   standalone: true,
-  imports: [IonButton, IonButtons, IonLabel, IonAvatar, IonItem, IonList, IonCardTitle, IonCardContent, IonCardHeader, IonCard, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [IonBackButton, IonButtons, IonList, IonCardTitle, IonCardContent, IonCardHeader, IonCard, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
 })
 export class NewsPage implements OnInit {
   news: any = [];

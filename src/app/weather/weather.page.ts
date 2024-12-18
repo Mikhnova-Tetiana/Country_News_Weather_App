@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonCardTitle, IonCardContent, IonCardHeader, IonCardSubtitle, IonCard } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonCardTitle, IonCardHeader, IonCardSubtitle, IonCard, IonButtons, IonBackButton } from '@ionic/angular/standalone';
 import { MyDataService } from '../services/my-data.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { MyDataService } from '../services/my-data.service';
   templateUrl: './weather.page.html',
   styleUrls: ['./weather.page.scss'],
   standalone: true,
-  imports: [IonCard, IonCardSubtitle, IonCardHeader, IonCardTitle, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [IonBackButton, IonButtons, IonCard, IonCardSubtitle, IonCardHeader, IonCardTitle, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
 })
 export class WeatherPage implements OnInit {
   weatherData: any = {};
