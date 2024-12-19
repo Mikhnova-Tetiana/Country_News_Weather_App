@@ -22,6 +22,9 @@ export class NewsPage implements OnInit {
     this.getStorageData();
   }
 
+  // Retrieve news data and the country name from storage.
+  // Check if the retrieved news data contains an error message.
+  // If an error is found, set the `news` property to null; otherwise, sets it to the fetched data.
   async getStorageData(){
     let result = await this.mds.get("news");
     if (result.message == "The country you provided does not exist in our database.") {
@@ -32,6 +35,9 @@ export class NewsPage implements OnInit {
     this.countryName = await this.mds.get("countryName");
   }
 
+  
+  // Handle the event when an image fails to load.
+  // Replace the broken image's source with a placeholder image.
   onImageError(event: any) {
     event.target.src = this.placeholderImage;
   }

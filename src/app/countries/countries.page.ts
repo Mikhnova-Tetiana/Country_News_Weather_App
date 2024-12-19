@@ -35,6 +35,10 @@ export class CountriesPage implements OnInit {
     this.getCountries();
   }
 
+   
+  // Fetch country data from storage and formats it for display.
+  // Retrieve flags, names, capital cities, and geolocation data.
+   
   async getCountries(){
     let countries = await this.mds.get("countries");
     for (const country of countries){
@@ -49,7 +53,11 @@ export class CountriesPage implements OnInit {
       });
     }
   }
+
   
+  //  Fetch news data for a specific country based on its code.
+  //  Store the news data and country name in storage and navigates to the News page.
+ 
   async openNews(code: string, name: string){
     this.options.url = `https://newsdata.io/api/1/latest?apikey=${this.newsdataApiKey}&country=${code}`;
     let result = await this.mhs.get(this.options);
@@ -57,6 +65,9 @@ export class CountriesPage implements OnInit {
     await this.mds.set("countryName", name);
     this.router.navigate(['/news']);
   }
+
+  // Fetch weather data for a specific location based on latitude and longitude.
+  // Store the data in storage and navigates to the Weather page.
 
   async openWeather(capital: string, latitude: number, longitude: number){
     let units: string = "metric";
@@ -80,6 +91,8 @@ export class CountriesPage implements OnInit {
     this.router.navigate(['/weather']);
   }
 
+  // Fetch holiday data for a specific country.
+  // Store the holiday data and country name in storage and navigates to the Holidays page.
   async openHolidays(code: string, name: string) {
     await this.mds.set("countryName", name);
     this.options.url = `https://date.nager.at/api/v3/publicholidays/2025/${code}`;

@@ -30,6 +30,7 @@ export class HomePage {
     addIcons({ settingsOutline });
   }
 
+  // Searche for countries based on the provided country name and navigate to the countries page.
   async searchCountries(){
     this.options.url = "https://restcountries.com/v3.1/name/".concat(this.countryName);
     let result = await this.mhs.get(this.options);
@@ -37,6 +38,8 @@ export class HomePage {
     await this.mds.set("countries", this.countries);
     this.router.navigate(['/countries']);
   }
+
+  // Open the settings page of the application.
   openSettings(){
     this.router.navigate(['/settings']);
   }

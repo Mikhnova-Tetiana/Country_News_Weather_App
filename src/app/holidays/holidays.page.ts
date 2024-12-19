@@ -30,6 +30,10 @@ export class HolidaysPage implements OnInit {
     this.getData();
   }
 
+  // Fetch holiday data and images for the holidays of a specific country.
+  // Retrieve the list of holidays and country name from storage.
+  // Fetche  a related image for each holiday from the Unsplash API.
+  // If no image is found, a default placeholder image is used.
   async getData(){
     this.holidays = await this.mds.get("countryHolidays");
     this.countryName = await this.mds.get("countryName");

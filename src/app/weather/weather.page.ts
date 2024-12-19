@@ -21,6 +21,7 @@ export class WeatherPage implements OnInit {
     this.getWeatherData();
   }
 
+  // Retrieve the weather data for a specific country from storage and set the weather icon URL.
   async getWeatherData(){
     this.weatherData = await this.mds.get("countryWeather");
     this.icon = `https://openweathermap.org/img/wn/${this.weatherData.icon}@2x.png`;

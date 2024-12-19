@@ -24,10 +24,12 @@ export class SettingsPage implements OnInit {
     this.initializeTheme();
   }
 
+  // Save the current unit preference to the storage.
   async saveUnit(){
     await this.mds.set("unit", this.unit);
   }
 
+  // Retrieve the saved unit preference from storage and update the local property.
   async setNewUnit(){
     let savedUnit = await this.mds.get("unit");
     if(savedUnit) {
@@ -35,17 +37,22 @@ export class SettingsPage implements OnInit {
     }
   }
 
+
+  // Initialize the theme preference by checking the saved theme in storage.
+  // If a theme is saved, set the dark mode state accordingly.
   async initializeTheme() {
     const savedTheme = await this.mds.get('theme');
     this.darkModeEnabled = savedTheme === 'dark';
     this.setTheme(this.darkModeEnabled);
   }
 
+  // Toggle the theme between light and dark mode based on user interaction.
   async toggleTheme(event: any) {
     this.darkModeEnabled = event.detail.checked;
     await this.setTheme(this.darkModeEnabled);
   }
 
+  // Apply the selected theme (light or dark) to the application and save the preference to storage.
   async setTheme(darkMode: boolean) {
     document.body.classList.toggle('dark', darkMode);
     await this.mds.set('theme', darkMode ? 'dark' : 'light');
